@@ -1,0 +1,35 @@
+import { GET_SMURF_START, GET_SMURF_SUCCESS, GET_SMURF_FAILURE, ADD_SMURF } from '../actions/actionIndex';
+
+const initialState = {
+    data: {},
+    isFetching: false,
+    hasData: false,
+    error: ''
+}
+
+export default (state = initialState, action) => {
+    switch(action.type) {
+        case GET_SMURF_START:
+            console.log('get smurf ran')
+            return {
+                ...state
+            }
+        case GET_SMURF_SUCCESS:
+            console.log('successfully got a smurf')
+            return {
+                ...state
+            }
+        case GET_SMURF_FAILURE:
+            console.log('error on the get, tex')
+            return {
+                ...state
+            }
+        case ADD_SMURF:
+            console.log('addded a smurf')
+            return {
+                ...state
+            }
+        default: 
+        return state
+    }
+}
