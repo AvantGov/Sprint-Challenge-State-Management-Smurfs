@@ -33,7 +33,13 @@ export default (state = initialState, action) => {
         case ADD_SMURF:
             console.log('addded a smurf')
             return {
-                ...state
+                ...state,
+                data: [ ...state.data, {
+                    name: action.payload.name,
+                    age: action.payload.age,
+                    height: action.payload.height,
+                    id: Date.now()
+                } ]
             }
         default: 
         return state

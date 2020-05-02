@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { addData } from '../actions/actionIndex'
 
 const SmurfForm = (props) => {
 
+    const [ localState, setLocalState ] = useState({
+        name: '',
+        age: '',
+        height: '',
+    })
+
+    const handleChange = (event) => {
+        event.preventDefault();
+        console.log("input state:", localState)
+        setLocalState({...localState, [event.target.name]: event.target.value})
+    }
+
+    const addDataHandler = () => {
+        props.addData(localState);
+        setLocalState({
+            name: '',
+            age: '',
+            height: '',
+        })
+    }
 
     // * need to set up a change handler in here 
 
@@ -14,9 +35,9 @@ const SmurfForm = (props) => {
                 className="form-container__input"
                 type="text"
                 placeholder="Name"
-                name="Name"
-                // onChange={handleChange}
-                // value={newItem}
+                name="name"
+                onChange={handleChange}
+                value={localState.name}
             />
            
             <label htmlFor='Age'>Age:</label>
@@ -24,9 +45,9 @@ const SmurfForm = (props) => {
                 className="form-container__input"
                 type="text"
                 placeholder="Age"
-                name="Age"
-                // onChange={handleChange}
-                // value={newItem}
+                name="age"
+                onChange={handleChange}
+                value={localState.age}
             />
             
             <label htmlFor='Height'>Height:</label>
@@ -34,15 +55,15 @@ const SmurfForm = (props) => {
                 className="form-container__input"
                 type="text"
                 placeholder="Height"
-                name="Height"
-                // onChange={handleChange}
-                // value={newItem}
+                name="height"
+                onChange={handleChange}
+                value={localState.height}
             />
             
             
             <button 
                 className='form-container__button'
-                // onClick={}
+                onClick={addDataHandler}
             >Create Smurf</button>
 
         </div>
@@ -50,4 +71,4 @@ const SmurfForm = (props) => {
 };
 
 
-export default connect(null, {})(SmurfForm);
+export default connect(null, { addData })(SmurfForm);

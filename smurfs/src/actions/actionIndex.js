@@ -23,4 +23,7 @@ export const getData = () => dispatch => {
         })
 }
 
-
+export const addData = (data) => {
+    console.log('data:', data)
+    return { type: ADD_SMURF, payload: data }
+}
