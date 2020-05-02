@@ -12,17 +12,23 @@ export default (state = initialState, action) => {
         case GET_SMURF_START:
             console.log('get smurf ran')
             return {
-                ...state
+                ...state,
+                isFetching: true
             }
         case GET_SMURF_SUCCESS:
             console.log('successfully got a smurf')
             return {
-                ...state
+                ...state,
+                data: action.payload.data,
+                isFetching: false,
+                hasData: true
             }
         case GET_SMURF_FAILURE:
             console.log('error on the get, tex')
             return {
-                ...state
+                ...state,
+                error: 'there was an error in the get request',
+                isFetching: false
             }
         case ADD_SMURF:
             console.log('addded a smurf')
